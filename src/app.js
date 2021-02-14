@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./routes/routing');
 var mongoose = require('mongoose');
+var logger = require('morgan');
+const dbModule = require('./models/data');
+
 // const myErrorLogger = require('./utilities/errorlogger');
 // const myRequestLogger = require('./utilities/requestlogger');
 
@@ -12,8 +15,11 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //DB connection string
-mongoose.connect('mongodb://localhost/defect-tracker');
-
+mongoose.connect('mongodb://localhost/defect-tracker', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+app.use(logger('dev'));
 // //For CORS
 // var corsOptions = {
 //   origin: 'http://localhost:3000',
