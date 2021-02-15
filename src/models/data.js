@@ -1,41 +1,80 @@
-var mongoose = require('mongoose');
-var Users = require('../models/userSchema');
-var Defects = require('../models/defectsSchema');
+exports.usersData = [
+  {
+    userId: 'U1001',
+    username: 'admin',
+    password: 'admin',
+  },
+  {
+    userId: 'U1002',
+    username: 'Anas',
+    password: 'Anas',
+  },
+  {
+    userId: 'U1003',
+    username: 'Vishwa',
+    password: 'Vishwa',
+  },
+  {
+    userId: 'U1004',
+    username: 'Akku',
+    password: 'Akku',
+  },
+  {
+    userId: 'U1005',
+    username: 'Mack',
+    password: 'Mack',
+  },
+];
 
-mongoose.connect('mongodb://localhost/defect-tracker', function () {
-  console.log('db connected');
-  mongoose.connection.db.dropDatabase();
-
-  var usersData = [
-    {
-      username: 'admin',
-      password: 'admin',
-    },
-    {
-      username: 'Mack',
-      password: 'Mack',
-    },
-  ];
-
-  usersData.forEach(function (user) {
-    new Users(user).save();
-  });
-
-  var defectsData = [
-    {
-      defectId: 'H100001',
-      defectSummary: 'High Priority Defect',
-      createdBy: 'admin',
-      createdOn: '24-02-2019',
-      priority: 'High',
-      status: 'In Progress',
-      assignedTo: 'Mack',
-    },
-  ];
-
-  defectsData.forEach(function (defect) {
-    new Defects(defect).save();
-  });
-
-  console.log('data stored successfully');
-});
+exports.defectsData = [
+  {
+    defectId: 'H100001',
+    defectSummary: 'High Priority Defect',
+    createdBy: 'admin',
+    createdOn: '2019-02-24',
+    priority: 1,
+    priorityLevel: 'High',
+    status: 'Closed',
+    assignedTo: 'Anas',
+  },
+  {
+    defectId: 'H100002',
+    defectSummary: 'High Priority Defect',
+    createdBy: 'admin',
+    createdOn: '2020-02-24',
+    priority: 1,
+    priorityLevel: 'High',
+    status: 'In Progress',
+    assignedTo: 'Anas',
+  },
+  {
+    defectId: 'M100003',
+    defectSummary: 'Medium Priority Defect',
+    createdBy: 'admin',
+    createdOn: '2019-02-24',
+    priority: 2,
+    priorityLevel: 'Medium',
+    status: 'Open',
+    assignedTo: 'Akku',
+  },
+  {
+    defectId: 'M100004',
+    defectSummary: 'Medium Priority Defect',
+    createdBy: 'admin',
+    createdOn: '2019-02-24',
+    priority: 2,
+    priorityLevel: 'Medium',
+    status: 'In Retest',
+    assignedTo: 'Vishwa',
+  },
+  {
+    defectId: 'L100005',
+    defectSummary: 'Low Priority Defect',
+    createdBy: 'admin',
+    createdOn: '2019-02-24',
+    priority: 5,
+    priorityLevel: 'Low',
+    status: 'New',
+    assignedTo: 'Mack',
+  },
+];

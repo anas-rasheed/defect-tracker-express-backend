@@ -1,26 +1,17 @@
 const express = require('express');
 const routing = express.Router();
-const Users = require('../models/userSchema');
+const setupDB = require('../utilities/setupDB');
+const Users = require('../models/schemas/userSchema');
 
-routing.post('/login', function (req, res, next) {
-  var creds = req.body;
-  Users.find(function (err, doc) {
-    for (let i = 0; i < doc.length; i++) {
-      if (
-        doc[i].username == creds.username &&
-        doc[i].password == creds.password
-      ) {
-        return res.status(201).send({
-          message: 'Login Successful',
-        });
-      } else {
-        return res.status(500).send({
-          message: 'Credential Mismatch',
-        });
-      }
-    }
-  });
-  //   next();
+// routing.post('/login', function (req, res, next) {
+//   const creds = req.body;
+//   Users.findOne();
+// });
+routing.get('/setup', (req, res, next) => {
+  setupDB()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => next(err));
 });
-
 module.exports = routing;
