@@ -3,7 +3,7 @@ const routing = express.Router();
 const setupDB = require('../utilities/setupDB');
 const connection = require('../utilities/connection');
 
-routing.post('/login', function (req, res, next) {
+routing.post('/login', (req, res, next) => {
   const creds = req.body;
   connection.getUsersCollection().then((users) => {
     users
@@ -18,6 +18,18 @@ routing.post('/login', function (req, res, next) {
       .catch((err) => next(err));
   });
 });
+
+routing.get('/fetchDefects', (req, res, next) => {
+  connection
+    .getDefectsCollection()
+    .then((defects) => {
+      defects.find().then((data) => {
+        res.send(data);
+      });
+    })
+    .catch((err) => next(err));
+});
+
 routing.get('/setup', (req, res, next) => {
   setupDB()
     .then((data) => {
