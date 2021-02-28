@@ -13,15 +13,14 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use(logger('dev'));
-// //For CORS
-// var corsOptions = {
-//   origin: 'http://localhost:3000',
-// };
-// app.use(cors(corsOptions));
+
+//For CORS
+
+// app.use(cors());
 // app.disable('x-powered-by');
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Credentials', true);
-//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
 //   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
 //   res.header(
 //     'Access-Control-Allow-Headers',

@@ -23,8 +23,8 @@ routing.get('/fetchDefects', (req, res, next) => {
   connection
     .getDefectsCollection()
     .then((defects) => {
-      defects.find().then((data) => {
-        res.send(data);
+      defects.find({}, { _id: 0, __v: 0 }).then((data) => {
+        res.status(200).send(data);
       });
     })
     .catch((err) => next(err));
