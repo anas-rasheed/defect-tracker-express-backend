@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const router = require('./routes/routing');
 var logger = require('morgan');
@@ -6,8 +7,9 @@ var logger = require('morgan');
 // const myErrorLogger = require('./utilities/errorlogger');
 // const myRequestLogger = require('./utilities/requestlogger');
 
-const cors = require('cors');
 const app = express();
+app.disable('x-powered-by');
+app.disable('etag');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,7 +19,6 @@ app.use(logger('dev'));
 //For CORS
 
 // app.use(cors());
-// app.disable('x-powered-by');
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Credentials', true);
 //   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
